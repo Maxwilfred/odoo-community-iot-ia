@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_iot_root" name="IoT" sequence="100"/>
+    <menuitem id="menu_iot_measurement" 
+              name="Mesures" 
+              parent="menu_iot_root"
+              action="action_iot_measurement"/>
+</odoo>
