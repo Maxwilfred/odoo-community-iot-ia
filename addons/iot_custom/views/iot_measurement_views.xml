@@ -8,6 +8,7 @@
                 <field name="device_id"/>
                 <field name="timestamp"/>
                 <field name="value"/>
+                <field name="unit"/>
                 <field name="threshold_exceeded"/>
             </tree>
         </field>
@@ -23,6 +24,7 @@
                         <field name="device_id"/>
                         <field name="timestamp"/>
                         <field name="value"/>
+                        <field name="unit"/>
                         <field name="threshold_exceeded"/>
                     </group>
                 </sheet>

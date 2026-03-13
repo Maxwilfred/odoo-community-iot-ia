@@ -14,7 +14,7 @@ MQTT_TOPIC = "sensor/temperature/#"
 ODOO_HOST = "localhost"
 ODOO_PORT = 8069
 ODOO_DB = "odoo_community"
-ODOO_USER = "admin"
+ODOO_USER = "d.maxwilfredb1@gmail.com"
 ODOO_PASSWORD = "admin"
 
 class Gateway:

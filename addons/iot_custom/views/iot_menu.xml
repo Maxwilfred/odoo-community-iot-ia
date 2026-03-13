@@ -5,4 +5,8 @@
               name="Mesures" 
               parent="menu_iot_root"
               action="action_iot_measurement"/>
+    <menuitem id="menu_iot_alert" 
+              name="Alertes" 
+              parent="menu_iot_root"
+              action="action_iot_alert"/>
 </odoo>

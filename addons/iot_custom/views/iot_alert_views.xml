@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_iot_alert_tree" model="ir.ui.view">
+        <field name="name">iot.alert.tree</field>
+        <field name="model">iot.alert</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="priority in ('2','3')" decoration-warning="priority=='1'">
+                <field name="name"/>
+                <field name="device_id"/>
+                <field name="value"/>
+                <field name="state" widget="badge"/>
+                <field name="priority"/>
+                <field name="assigned_to"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_iot_alert_form" model="ir.ui.view">
+        <field name="name">iot.alert.form</field>
+        <field name="model">iot.alert</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_assign" string="Prendre en charge" 
+                            type="object" class="btn-primary"
+                            invisible="state != 'new'"/>
+                    <button name="action_done" string="Marquer comme traitée" 
+                            type="object" class="btn-success"
+                            invisible="state != 'in_progress'"/>
+                    <button name="action_cancel" string="Annuler" 
+                            type="object" class="btn-secondary"
+                            invisible="state == 'done' or state == 'cancelled'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,in_progress,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="device_id"/>
+                            <field name="measurement_id"/>
+                        </group>
+                        <group>
+                            <field name="value"/>
+                            <field name="threshold"/>
+                            <field name="priority"/>
+                            <field name="assigned_to"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description" widget="html"/>
+                    </group>
+                    <group invisible="state not in ('done','cancelled')">
+                        <field name="resolution" widget="html"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_iot_alert_search" model="ir.ui.view">
+        <field name="name">iot.alert.search</field>
+        <field name="model">iot.alert</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="device_id"/>
+                <field name="assigned_to"/>
+                <filter name="new" string="Nouvelles" domain="[('state','=','new')]"/>
+                <filter name="in_progress" string="En cours" domain="[('state','=','in_progress')]"/>
+                <filter name="done" string="Traitées" domain="[('state','=','done')]"/>
+                <filter name="high" string="Haute priorité" domain="[('priority','in',('2','3'))]"/>
+                <group expand="0" string="Grouper par">
+                    <filter name="group_state" string="État" context="{'group_by':'state'}"/>
+                    <filter name="group_priority" string="Priorité" context="{'group_by':'priority'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_iot_alert" model="ir.actions.act_window">
+        <field name="name">Alertes IoT</field>
+        <field name="res_model">iot.alert</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Aucune alerte pour le moment</p>
+        </field>
+    </record>
+</odoo>

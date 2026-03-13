@@ -5,7 +5,8 @@
     'description': """
         Module personnalisé pour l'intégration de capteurs IoT
         - Gestion des mesures de température
-        - Déclenchement d'alertes qualité
+        - Alertes IoT
+        - Tickets de maintenance
     """,
     'author': 'DJASRANGUE Maxwilfred',
     'category': 'IoT',
@@ -13,6 +14,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/iot_measurement_views.xml',
+        'views/iot_alert_views.xml',
         'views/iot_menu.xml',
     ],
     'installable': True,
